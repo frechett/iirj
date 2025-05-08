@@ -202,11 +202,11 @@ public class CompareWithScipyTest
 	}
 
 	private DoubleSignal readSignalFromCSV(InputStream inputStream, String signalName) {
-		List<String> lines = new BufferedReader(new InputStreamReader(inputStream,
+		List<Object> lines = new BufferedReader(new InputStreamReader(inputStream,
 				StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
 		DoubleSignal doubleSignal = new DoubleSignal(lines.size() - 1, signalName);
 		for (int i = 1; i < lines.size(); i++) {
-			String[] parts = lines.get(i).split(";");
+			String[] parts = lines.get(i).toString().split(";");
 			doubleSignal.setValue(i - 1, Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
 		}
 		return doubleSignal;
